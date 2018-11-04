@@ -1,19 +1,18 @@
 ---
-title: "MOOC_OpenDataScience"
-author: "Hari Adhikari"
-date: "31 October 2018"
-output:
-  html_document: default
+output: html_document
 ---
+# Link to course diary
+https://adhihari.github.io/IODS-project/
 
-# About the project
+
+## About the project
 OPEN DATA - OPEN SCIENCE - DATA SCIENCE
 We must discover the patterns hidden behind numbers in matrices and arrays. We are not afraid of coding, recoding, programming, or modelling. We want to visualize, analyze, interpret, understand, and communicate. These are the core themes of Open Data Science (Open Data - Open Science - Data Science). And this course is THE course for learning these skills.
 
-# Link to my git repository
+## Link to my git repository
 https://github.com/adhihari/IODS-project
 
-# Useful link for this course 
+## Useful link for this course 
 
 Introduction to Open Data Science
 https://courses.helsinki.fi/en/HYMY-909/125158217
