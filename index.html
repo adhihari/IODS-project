@@ -148,17 +148,10 @@ $(document).ready(function () {
 <li><a href="#about-the-project">About the project</a></li>
 <li><a href="#link-to-my-git-repository">Link to my git repository</a></li>
 <li><a href="#useful-link-for-this-course">Useful link for this course</a></li>
-<li><a href="#insert-chapter-2-title-here">Insert chapter 2 title here</a></li>
-<li><a href="#now-reading-data-from-web">Now reading data from web</a></li>
-<li><a href="#structure-of-the-data">Structure of the data</a></li>
-<li><a href="#so-it-has-gender-column-as-factor-and-age-and-points-columns-as-integer-rest-of-the-columns-are-numeric.">so it has “gender” column as Factor and “age” and “points” columns as integer, rest of the columns are numeric.</a></li>
-<li><a href="#dimension-of-the-data">Dimension of the data</a></li>
-<li><a href="#lets-visualize-the-attitude-versus-points-and-colors-are-given-based-in-gender">Lets visualize the attitude versus points and colors are given based in gender</a></li>
-<li><a href="#initialize-plot-with-data-and-aesthetic-mapping">initialize plot with data and aesthetic mapping</a></li>
-<li><a href="#figure-shows-that-the-attitude-and-points-are-linearly-related">Figure shows that the attitude and points are linearly related</a></li>
-<li><a href="#create-a-model">Create a model</a></li>
-<li><a href="#create-a-summary">Create a summary</a></li>
-<li><a href="#gender-age-attitude-deep-stra-surf-points">“gender” “age” “attitude” “deep” “stra” “surf” “points”</a></li>
+<li><a href="#data-wrangling-and-analysis">Data wrangling and analysis</a></li>
+<li><a href="#data-wrangling-1">Data Wrangling 1</a></li>
+<li><a href="#data-wrangling-2">Data Wrangling 2</a></li>
+<li><a href="#data-wrangling-3">Data Wrangling 3</a></li>
 </ul>
 </div>
 
@@ -179,90 +172,136 @@ $(document).ready(function () {
 <p>Blogs <a href="https://blogs.helsinki.fi/thinkopen/welcome-open-data-science/" class="uri">https://blogs.helsinki.fi/thinkopen/welcome-open-data-science/</a></p>
 <hr />
 </div>
-<div id="insert-chapter-2-title-here" class="section level1">
-<h1>Insert chapter 2 title here</h1>
-<p><em>Describe the work you have done this week and summarize your learning.</em> #Install package and run library # install.packages(ggplot2) library(ggplot2)</p>
-<div id="section" class="section level26">
-<p></p>
+<div id="data-wrangling-and-analysis" class="section level1">
+<h1>Data wrangling and analysis</h1>
+<p>Install package and run library install.packages(ggplot2) library(ggplot2)</p>
 </div>
-<div id="data-wrangling-1" class="section level4">
-<h4>Data Wrangling 1</h4>
-<div id="section-1" class="section level26">
-<p></p>
+<div id="data-wrangling-1" class="section level1">
+<h1>Data Wrangling 1</h1>
+<p>Now reading data from web</p>
+<pre class="r"><code>students2014  &lt;- read.table(&quot;http://s3.amazonaws.com/assets.datacamp.com/production/course_2218/datasets/learning2014.txt&quot;, sep=&quot;,&quot;, header =T)</code></pre>
+<p>Structure of the data</p>
+<pre class="r"><code>str(students2014)</code></pre>
+<pre><code>## 'data.frame':    166 obs. of  7 variables:
+##  $ gender  : Factor w/ 2 levels &quot;F&quot;,&quot;M&quot;: 1 2 1 2 2 1 2 1 2 1 ...
+##  $ age     : int  53 55 49 53 49 38 50 37 37 42 ...
+##  $ attitude: num  3.7 3.1 2.5 3.5 3.7 3.8 3.5 2.9 3.8 2.1 ...
+##  $ deep    : num  3.58 2.92 3.5 3.5 3.67 ...
+##  $ stra    : num  3.38 2.75 3.62 3.12 3.62 ...
+##  $ surf    : num  2.58 3.17 2.25 2.25 2.83 ...
+##  $ points  : int  25 12 24 10 22 21 21 31 24 26 ...</code></pre>
+<p>so it has “gender” column as Factor and “age” and “points” columns as integer, rest of the columns are numeric.</p>
+<p>Dimension of the data</p>
+<pre class="r"><code>dim(students2014)</code></pre>
+<pre><code>## [1] 166   7</code></pre>
+<p>It has 166 rows and 7 columns</p>
+<p>Names of columns</p>
+<pre class="r"><code>names(students2014)</code></pre>
+<pre><code>## [1] &quot;gender&quot;   &quot;age&quot;      &quot;attitude&quot; &quot;deep&quot;     &quot;stra&quot;     &quot;surf&quot;    
+## [7] &quot;points&quot;</code></pre>
 </div>
+<div id="data-wrangling-2" class="section level1">
+<h1>Data Wrangling 2</h1>
+<pre class="r"><code>   dim(students2014)</code></pre>
+<pre><code>## [1] 166   7</code></pre>
+<p>Plot the variables Lets visualize the attitude versus points and colors are given based in gender</p>
+<pre class="r"><code>library(ggplot2)
+#initialize plot with data and aesthetic mapping
+p1 &lt;- ggplot(students2014, aes(x = attitude, y = points, col=gender))
+#define the visualization type (points)
+p2 &lt;- p1 + geom_point()
+#draw the plot
+p2</code></pre>
+<p><img src="data:image/png;base64,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" width="576" /> Figure shows that the attitude and points are linearly related</p>
+<p>See the summary of the data</p>
+<pre class="r"><code>summary(students2014) </code></pre>
+<pre><code>##  gender       age           attitude          deep            stra      
+##  F:110   Min.   :17.00   Min.   :1.400   Min.   :1.583   Min.   :1.250  
+##  M: 56   1st Qu.:21.00   1st Qu.:2.600   1st Qu.:3.333   1st Qu.:2.625  
+##          Median :22.00   Median :3.200   Median :3.667   Median :3.188  
+##          Mean   :25.51   Mean   :3.143   Mean   :3.680   Mean   :3.121  
+##          3rd Qu.:27.00   3rd Qu.:3.700   3rd Qu.:4.083   3rd Qu.:3.625  
+##          Max.   :55.00   Max.   :5.000   Max.   :4.917   Max.   :5.000  
+##       surf           points     
+##  Min.   :1.583   Min.   : 7.00  
+##  1st Qu.:2.417   1st Qu.:19.00  
+##  Median :2.833   Median :23.00  
+##  Mean   :2.787   Mean   :22.72  
+##  3rd Qu.:3.167   3rd Qu.:27.75  
+##  Max.   :4.333   Max.   :33.00</code></pre>
+<p>There are 110 female and 56 male</p>
 </div>
-</div>
-<div id="now-reading-data-from-web" class="section level1">
-<h1>Now reading data from web</h1>
-<p>students2014 &lt;- read.table(“<a href="http://s3.amazonaws.com/assets.datacamp.com/production/course_2218/datasets/learning2014.txt" class="uri">http://s3.amazonaws.com/assets.datacamp.com/production/course_2218/datasets/learning2014.txt</a>”, sep=“,”, header =T)</p>
-</div>
-<div id="structure-of-the-data" class="section level1">
-<h1>Structure of the data</h1>
-<p>str(students2014)</p>
-</div>
-<div id="so-it-has-gender-column-as-factor-and-age-and-points-columns-as-integer-rest-of-the-columns-are-numeric." class="section level1">
-<h1>so it has “gender” column as Factor and “age” and “points” columns as integer, rest of the columns are numeric.</h1>
-</div>
-<div id="dimension-of-the-data" class="section level1">
-<h1>Dimension of the data</h1>
-<p>dim(students2014) # [1] 166 7 # It has 166 rows and 7 columns names(students2014) # Names of columns # “gender” “age” “attitude” “deep” “stra” “surf” “points”</p>
-<div id="section-2" class="section level26">
-<p></p>
-</div>
-<div id="data-wrangling-2" class="section level4">
-<h4>Data Wrangling 2</h4>
-<div id="section-3" class="section level26">
-<p></p>
-</div>
-</div>
-<div id="plot-the-variables" class="section level3">
-<h3>Plot the variables</h3>
-</div>
-</div>
-<div id="lets-visualize-the-attitude-versus-points-and-colors-are-given-based-in-gender" class="section level1">
-<h1>Lets visualize the attitude versus points and colors are given based in gender</h1>
-</div>
-<div id="initialize-plot-with-data-and-aesthetic-mapping" class="section level1">
-<h1>initialize plot with data and aesthetic mapping</h1>
-<p>p1 &lt;- ggplot(students2014, aes(x = attitude, y = points, col=gender)) # define the visualization type (points) p2 &lt;- p1 + geom_point() # draw the plot p2</p>
-</div>
-<div id="figure-shows-that-the-attitude-and-points-are-linearly-related" class="section level1">
-<h1>Figure shows that the attitude and points are linearly related</h1>
-<div id="see-the-summary-of-the-data" class="section level3">
-<h3>See the summary of the data</h3>
-<p>summary(students2014) #There are 110 female and 56 male</p>
-<div id="section-4" class="section level26">
-<p></p>
-</div>
-<div id="data-wrangling-3" class="section level4">
-<h4>Data Wrangling 3</h4>
-<div id="section-5" class="section level26">
-<p></p>
-</div>
-</div>
-</div>
-</div>
-<div id="create-a-model" class="section level1">
-<h1>Create a model</h1>
-<p>Model1&lt;- lm(points ~ gender+age+attitude, data = students2014)</p>
-</div>
-<div id="create-a-summary" class="section level1">
-<h1>Create a summary</h1>
-<p>summary(Model1) Call: lm(formula = points ~ gender + age + attitude, data = students2014)</p>
-<p>Residuals: Min 1Q Median 3Q Max -17.4590 -3.3221 0.2186 4.0247 10.4632</p>
-<p>Coefficients: Estimate Std. Error t value Pr(&gt;|t|)<br />
-(Intercept) 13.42910 2.29043 5.863 2.48e-08 <strong><em> genderM -0.33054 0.91934 -0.360 0.720<br />
-age -0.07586 0.05367 -1.414 0.159<br />
-attitude 3.60657 0.59322 6.080 8.34e-09 </em></strong> — Signif. codes: 0 ‘<em><strong>’ 0.001 ’</strong>’ 0.01 ’</em>’ 0.05 ‘.’ 0.1 ‘’ 1</p>
-<p>Residual standard error: 5.315 on 162 degrees of freedom Multiple R-squared: 0.2018, Adjusted R-squared: 0.187 F-statistic: 13.65 on 3 and 162 DF, p-value: 5.536e-08</p>
-</div>
-<div id="gender-age-attitude-deep-stra-surf-points" class="section level1">
-<h1>“gender” “age” “attitude” “deep” “stra” “surf” “points”</h1>
-<ul>
-<li>Describe your work and results clearly.</li>
-<li>Assume the reader has an introductory course level understanding of writing and reading R code as well as statistical methods</li>
-<li>Assume the reader has no previous knowledge of your data or the more advanced methods you are using</li>
-</ul>
+<div id="data-wrangling-3" class="section level1">
+<h1>Data Wrangling 3</h1>
+<p>Create a model</p>
+<pre class="r"><code>Model1&lt;- lm(points ~ gender+age+attitude, data = students2014)</code></pre>
+<p>head() Create a summary</p>
+<pre class="r"><code>summary(Model1)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = points ~ gender + age + attitude, data = students2014)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -17.4590  -3.3221   0.2186   4.0247  10.4632 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 13.42910    2.29043   5.863 2.48e-08 ***
+## genderM     -0.33054    0.91934  -0.360    0.720    
+## age         -0.07586    0.05367  -1.414    0.159    
+## attitude     3.60657    0.59322   6.080 8.34e-09 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 5.315 on 162 degrees of freedom
+## Multiple R-squared:  0.2018, Adjusted R-squared:  0.187 
+## F-statistic: 13.65 on 3 and 162 DF,  p-value: 5.536e-08</code></pre>
+<p>Only “attitude”&quot; is significant, so we will remove “gender” and “age” from the model Now i try to include rest of the variables except “gender” and “age” and see its significance.</p>
+<pre class="r"><code>Model2&lt;- lm(points ~ attitude+deep+stra+surf, data = students2014)
+summary(Model2)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = points ~ attitude + deep + stra + surf, data = students2014)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -16.7335  -3.1992   0.7975   3.4002  11.6582 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  15.4000     5.0245   3.065  0.00255 ** 
+## attitude      3.4362     0.5739   5.987 1.34e-08 ***
+## deep         -1.0072     0.7870  -1.280  0.20247    
+## stra          0.8847     0.5411   1.635  0.10398    
+## surf         -0.9105     0.8390  -1.085  0.27948    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 5.286 on 161 degrees of freedom
+## Multiple R-squared:  0.2154, Adjusted R-squared:  0.1959 
+## F-statistic: 11.05 on 4 and 161 DF,  p-value: 6.057e-08</code></pre>
+<p>Now we see that except “attitude” all other variables are insignificant So we make a model 3 by just using “attitude” as predictor variables</p>
+<pre class="r"><code>Model3&lt;- lm(points ~ attitude, data = students2014)
+summary(Model3)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = points ~ attitude, data = students2014)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -16.9763  -3.2119   0.4339   4.1534  10.6645 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  11.6372     1.8303   6.358 1.95e-09 ***
+## attitude      3.5255     0.5674   6.214 4.12e-09 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 5.32 on 164 degrees of freedom
+## Multiple R-squared:  0.1906, Adjusted R-squared:  0.1856 
+## F-statistic: 38.61 on 1 and 164 DF,  p-value: 4.119e-09</code></pre>
 <hr />
 </div>
 
