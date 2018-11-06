@@ -1,6 +1,38 @@
 # Insert chapter 2 title here
 
 *Describe the work you have done this week and summarize your learning.*
+#Install package and run library
+# install.packages(ggplot2)
+library(ggplot2)
+
+# As this point i do not need to install packages and run the library
+# Now reading data from web
+students2014  <- read.table("http://s3.amazonaws.com/assets.datacamp.com/production/course_2218/datasets/learning2014.txt", sep=",", header =T)
+
+summary(students2014) # See the summary of the data
+
+# Structure of the data
+str(students2014)
+
+# so it has "gender" column as Factor and "age" and "points" columns as integer, rest of the columns are numeric.
+
+# Dimension of the data
+dim(students2014)
+# [1] 166   7
+# It has 166 rows and 7 columns
+names(students2014) # Names of columns
+# "gender"   "age"      "attitude" "deep"     "stra"     "surf"     "points"  
+
+# Lets visualize the attitude versus points and colors are given based in gender
+# initialize plot with data and aesthetic mapping
+p1 <- ggplot(students2014, aes(x = attitude, y = points, col=gender))
+
+# define the visualization type (points)
+p2 <- p1 + geom_point()
+
+# draw the plot
+p2
+
 
 - Describe your work and results clearly. 
 - Assume the reader has an introductory course level understanding of writing and reading R code as well as statistical methods
