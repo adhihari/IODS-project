@@ -92,6 +92,9 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
 }
@@ -146,6 +149,16 @@ $(document).ready(function () {
 <li><a href="#link-to-my-git-repository">Link to my git repository</a></li>
 <li><a href="#useful-link-for-this-course">Useful link for this course</a></li>
 <li><a href="#insert-chapter-2-title-here">Insert chapter 2 title here</a></li>
+<li><a href="#now-reading-data-from-web">Now reading data from web</a></li>
+<li><a href="#structure-of-the-data">Structure of the data</a></li>
+<li><a href="#so-it-has-gender-column-as-factor-and-age-and-points-columns-as-integer-rest-of-the-columns-are-numeric.">so it has “gender” column as Factor and “age” and “points” columns as integer, rest of the columns are numeric.</a></li>
+<li><a href="#dimension-of-the-data">Dimension of the data</a></li>
+<li><a href="#lets-visualize-the-attitude-versus-points-and-colors-are-given-based-in-gender">Lets visualize the attitude versus points and colors are given based in gender</a></li>
+<li><a href="#initialize-plot-with-data-and-aesthetic-mapping">initialize plot with data and aesthetic mapping</a></li>
+<li><a href="#figure-shows-that-the-attitude-and-points-are-linearly-related">Figure shows that the attitude and points are linearly related</a></li>
+<li><a href="#create-a-model">Create a model</a></li>
+<li><a href="#create-a-summary">Create a summary</a></li>
+<li><a href="#gender-age-attitude-deep-stra-surf-points">“gender” “age” “attitude” “deep” “stra” “surf” “points”</a></li>
 </ul>
 </div>
 
@@ -168,7 +181,83 @@ $(document).ready(function () {
 </div>
 <div id="insert-chapter-2-title-here" class="section level1">
 <h1>Insert chapter 2 title here</h1>
-<p><em>Describe the work you have done this week and summarize your learning.</em></p>
+<p><em>Describe the work you have done this week and summarize your learning.</em> #Install package and run library # install.packages(ggplot2) library(ggplot2)</p>
+<div id="section" class="section level26">
+<p></p>
+</div>
+<div id="data-wrangling-1" class="section level4">
+<h4>Data Wrangling 1</h4>
+<div id="section-1" class="section level26">
+<p></p>
+</div>
+</div>
+</div>
+<div id="now-reading-data-from-web" class="section level1">
+<h1>Now reading data from web</h1>
+<p>students2014 &lt;- read.table(“<a href="http://s3.amazonaws.com/assets.datacamp.com/production/course_2218/datasets/learning2014.txt" class="uri">http://s3.amazonaws.com/assets.datacamp.com/production/course_2218/datasets/learning2014.txt</a>”, sep=“,”, header =T)</p>
+</div>
+<div id="structure-of-the-data" class="section level1">
+<h1>Structure of the data</h1>
+<p>str(students2014)</p>
+</div>
+<div id="so-it-has-gender-column-as-factor-and-age-and-points-columns-as-integer-rest-of-the-columns-are-numeric." class="section level1">
+<h1>so it has “gender” column as Factor and “age” and “points” columns as integer, rest of the columns are numeric.</h1>
+</div>
+<div id="dimension-of-the-data" class="section level1">
+<h1>Dimension of the data</h1>
+<p>dim(students2014) # [1] 166 7 # It has 166 rows and 7 columns names(students2014) # Names of columns # “gender” “age” “attitude” “deep” “stra” “surf” “points”</p>
+<div id="section-2" class="section level26">
+<p></p>
+</div>
+<div id="data-wrangling-2" class="section level4">
+<h4>Data Wrangling 2</h4>
+<div id="section-3" class="section level26">
+<p></p>
+</div>
+</div>
+<div id="plot-the-variables" class="section level3">
+<h3>Plot the variables</h3>
+</div>
+</div>
+<div id="lets-visualize-the-attitude-versus-points-and-colors-are-given-based-in-gender" class="section level1">
+<h1>Lets visualize the attitude versus points and colors are given based in gender</h1>
+</div>
+<div id="initialize-plot-with-data-and-aesthetic-mapping" class="section level1">
+<h1>initialize plot with data and aesthetic mapping</h1>
+<p>p1 &lt;- ggplot(students2014, aes(x = attitude, y = points, col=gender)) # define the visualization type (points) p2 &lt;- p1 + geom_point() # draw the plot p2</p>
+</div>
+<div id="figure-shows-that-the-attitude-and-points-are-linearly-related" class="section level1">
+<h1>Figure shows that the attitude and points are linearly related</h1>
+<div id="see-the-summary-of-the-data" class="section level3">
+<h3>See the summary of the data</h3>
+<p>summary(students2014) #There are 110 female and 56 male</p>
+<div id="section-4" class="section level26">
+<p></p>
+</div>
+<div id="data-wrangling-3" class="section level4">
+<h4>Data Wrangling 3</h4>
+<div id="section-5" class="section level26">
+<p></p>
+</div>
+</div>
+</div>
+</div>
+<div id="create-a-model" class="section level1">
+<h1>Create a model</h1>
+<p>Model1&lt;- lm(points ~ gender+age+attitude, data = students2014)</p>
+</div>
+<div id="create-a-summary" class="section level1">
+<h1>Create a summary</h1>
+<p>summary(Model1) Call: lm(formula = points ~ gender + age + attitude, data = students2014)</p>
+<p>Residuals: Min 1Q Median 3Q Max -17.4590 -3.3221 0.2186 4.0247 10.4632</p>
+<p>Coefficients: Estimate Std. Error t value Pr(&gt;|t|)<br />
+(Intercept) 13.42910 2.29043 5.863 2.48e-08 <strong><em> genderM -0.33054 0.91934 -0.360 0.720<br />
+age -0.07586 0.05367 -1.414 0.159<br />
+attitude 3.60657 0.59322 6.080 8.34e-09 </em></strong> — Signif. codes: 0 ‘<em><strong>’ 0.001 ’</strong>’ 0.01 ’</em>’ 0.05 ‘.’ 0.1 ‘’ 1</p>
+<p>Residual standard error: 5.315 on 162 degrees of freedom Multiple R-squared: 0.2018, Adjusted R-squared: 0.187 F-statistic: 13.65 on 3 and 162 DF, p-value: 5.536e-08</p>
+</div>
+<div id="gender-age-attitude-deep-stra-surf-points" class="section level1">
+<h1>“gender” “age” “attitude” “deep” “stra” “surf” “points”</h1>
 <ul>
 <li>Describe your work and results clearly.</li>
 <li>Assume the reader has an introductory course level understanding of writing and reading R code as well as statistical methods</li>

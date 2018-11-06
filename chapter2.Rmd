@@ -13,9 +13,7 @@ library(ggplot2)
 students2014  <- read.table("http://s3.amazonaws.com/assets.datacamp.com/production/course_2218/datasets/learning2014.txt", sep=",", header =T)
 
 # Structure of the data
-str(students2014)
-
-# so it has "gender" column as Factor and "age" and "points" columns as integer, rest of the columns are numeric.
+str(students2014) # so it has "gender" column as Factor and "age" and "points" columns as integer, rest of the columns are numeric.
 
 # Dimension of the data
 dim(students2014)
@@ -27,8 +25,11 @@ names(students2014) # Names of columns
 ##########################
 #### Data Wrangling 2 ####
 ##########################
+```{r}
+dim(students2014)
+```
 
-###  Plot the variables
+Plot the variables
 
 # Lets visualize the attitude versus points and colors are given based in gender
 # initialize plot with data and aesthetic mapping
@@ -52,6 +53,7 @@ Model1<- lm(points ~ gender+age+attitude, data = students2014)
 
 # Create a summary
 summary(Model1)
+
 Call:
 lm(formula = points ~ gender + age + attitude, data = students2014)
 
