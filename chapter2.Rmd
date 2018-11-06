@@ -5,11 +5,12 @@
 # install.packages(ggplot2)
 library(ggplot2)
 
-# As this point i do not need to install packages and run the library
+##########################
+#### Data Wrangling 1 ####
+##########################
+
 # Now reading data from web
 students2014  <- read.table("http://s3.amazonaws.com/assets.datacamp.com/production/course_2218/datasets/learning2014.txt", sep=",", header =T)
-
-summary(students2014) # See the summary of the data
 
 # Structure of the data
 str(students2014)
@@ -23,15 +24,55 @@ dim(students2014)
 names(students2014) # Names of columns
 # "gender"   "age"      "attitude" "deep"     "stra"     "surf"     "points"  
 
+##########################
+#### Data Wrangling 2 ####
+##########################
+
+###  Plot the variables
+
 # Lets visualize the attitude versus points and colors are given based in gender
 # initialize plot with data and aesthetic mapping
 p1 <- ggplot(students2014, aes(x = attitude, y = points, col=gender))
-
 # define the visualization type (points)
 p2 <- p1 + geom_point()
-
 # draw the plot
 p2
+
+# Figure shows that the attitude and points are linearly related
+
+### See the summary of the data
+summary(students2014) 
+#There are 110 female and 56 male
+
+##########################
+#### Data Wrangling 3 ####
+##########################
+# Create a model
+Model1<- lm(points ~ gender+age+attitude, data = students2014)
+
+# Create a summary
+summary(Model1)
+Call:
+lm(formula = points ~ gender + age + attitude, data = students2014)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-17.4590  -3.3221   0.2186   4.0247  10.4632 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 13.42910    2.29043   5.863 2.48e-08 ***
+genderM     -0.33054    0.91934  -0.360    0.720    
+age         -0.07586    0.05367  -1.414    0.159    
+attitude     3.60657    0.59322   6.080 8.34e-09 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 5.315 on 162 degrees of freedom
+Multiple R-squared:  0.2018,	Adjusted R-squared:  0.187 
+F-statistic: 13.65 on 3 and 162 DF,  p-value: 5.536e-08
+
+# "gender"   "age"      "attitude" "deep"     "stra"     "surf"     "points"  
 
 
 - Describe your work and results clearly. 
