@@ -2,7 +2,9 @@
 
 Install package and run library
 install.packages(ggplot2)
+```{r}
 library(ggplot2)
+```
 
 #Data Wrangling 1 
 
@@ -14,7 +16,7 @@ Structure of the data
 ```{r}
 str(students2014)
 ```
-so it has "gender" column as Factor and "age" and "points" columns as integer, rest of the columns are numeric.
+So it has "gender" column as Factor and "age" and "points" columns as integer, rest of the columns are numeric.
 
 Dimension of the data
 ```{r}
@@ -58,7 +60,7 @@ Create a model
 ```{r}
 Model1<- lm(points ~ gender+age+attitude, data = students2014)
 ```
-head()
+
 Create a summary
 ```{r}
 summary(Model1)
