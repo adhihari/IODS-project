@@ -6,7 +6,7 @@ install.packages(ggplot2)
 library(ggplot2)
 ```
 
-#Data Wrangling 1 
+#Data Analysis 1 
 
 Now reading data from web
 ```{r}
@@ -29,7 +29,7 @@ Names of columns
 names(students2014)
 ```
 
-#Data Wrangling 2 
+#Data Analysis 2 
 
 ```{r}
    dim(students2014)
@@ -54,7 +54,7 @@ summary(students2014)
 ```
 There are 110 female and 56 male
 
-#Data Wrangling 3
+#Data Analysis 3
 
 Create a model
 ```{r}
@@ -76,10 +76,20 @@ summary(Model2)
 Now we see that except "attitude" all other variables are insignificant
 So we make a model 3 by just using "attitude" as predictor variables
 
+#Data Analysis 4 
 ```{r}
 Model3<- lm(points ~ attitude, data = students2014)
 summary(Model3)
 ```
+In Model3, there is a positive correlation between attitude and the response (points) which is shown by positive intercept. The "attitude" is significant. 
+In case of Model3, Multiple R-squared is 0.1906 and Adjusted R_squared is 0.1856. Which means this Model3 can explain only 18% of the variance in the model.
 
+# Data Analysis 5
+```{r}
+## 4 plots on 1 page;
+## allow room for printing model formula in outer margin:
+par(mfrow = c(2, 2), oma = c(0, 0, 2, 0))
+plot(Model3)
+```
 
-
+Residual and fitted values are normally distributed.
