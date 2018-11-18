@@ -1,4 +1,10 @@
-
+---
+title: "MOOC_OpenDataScience"
+author: "Hari Adhikari"
+date: "11 November 2018"
+output:
+  html_document: default
+---
 # Exercise 3
 ## Data Wrangling
 See https://github.com/adhihari/IODS-project/blob/master/data/create_alc.R
@@ -64,9 +70,9 @@ Female tends to drink if the fathers education is primary level education compar
 
 Fedu - father's education (numeric: 0 - none, 
                               1 - primary education (4th grade), 
-                              2 �???" 5th to 9th grade, 
-                              3 �???" secondary education 
-                              4 �???" higher education) 
+                              2 â€“ 5th to 9th grade, 
+                              3 â€“ secondary education 
+                              4 â€“ higher education) 
                               
 
 ```{r }
