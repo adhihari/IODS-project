@@ -1,0 +1,103 @@
+---
+title: "MOOC_OpenDataScience"
+author: "Hari Adhikari"
+date: "11 November 2018"
+output:
+  html_document: default
+---
+
+We run libraries of "dplyr" and "ggplot2"
+install.packages("ggplot2")
+```{r setup3, include = FALSE}
+library(dplyr)
+library(ggplot2)
+```
+
+
+Now we are reading the joined data set used in the analysis exercise combines the two student alcohol consumption data sets. 
+
+### Some background about the data
+The following adjustments have been made:
+
+The variables not used for joining the two data have been combined by averaging (including the grade variables)
+'alc_use' is the average of 'Dalc' and 'Walc'
+'high_use' is TRUE if 'alc_use' is higher than 2 and FALSE otherwise. 
+
+Although we have saved the alc.txt file in the data wrangling exercise, we are going to use alc.txt from the website
+Here we will print the names of the columns in the dataframe and also see the structure of the data
+
+#### Now reading data from web
+```{r}
+alc  <- read.table("http://s3.amazonaws.com/assets.datacamp.com/production/course_2218/datasets/alc.txt", sep=",", header =T)
+#names of colums present in the data
+print(names(alc))
+print(str(alc))
+print(dim(alc))
+```
+
+Now we see that the data frame has 382 rows and 35 columns. 
+
+We also see that we have factor, numeric, integers, and logical data types in the data frame.
+
+###### I think that student consume more alcohol when there is lack of parential guidence,i assume that more educated father can guide his child for better future and discourage him/her for alchol consumption.
+###### Next, i assume that if a student is romantic, for example if he has tragedy in life, he/she might consume more alcohol.
+###### Next, Absent in class might indirectly means he is going to bar and has hangover
+###### Next, failures in previous years might lead him/her to drink alchol. 
+
+#### Data types
+Fedu (numeric 0-4)
+romantic (binary yes or no)
+absences (numeric 0 to 45)
+failures(numeric, range between 0 to 3)
+
+So, i am going to see the relationships between low/high alcohol consumption and 4 different predictor variables, 
+First i want to plot the relationships and make some analysis. 
+
+```{r }
+# Plot high_use of alchol (true or false) based on fathers education and also see if the results differ if student is boy or girl
+Feduplot <- ggplot(alc, aes(x = high_use, y = Fedu, col = sex))
+
+# define the plot as a boxplot and draw it
+Feduplot + geom_boxplot() + ylab("Fathers education level") +ggtitle("Fathers education level by alcohol consumption and sex")
+```
+There a clear difference on level of alchol consumption based on fathers education
+Female tends to drink if the fathers education is primary level education compared to males. 
+
+Fedu - father's education (numeric: 0 - none, 
+                              1 - primary education (4th grade), 
+                              2 â???" 5th to 9th grade, 
+                              3 â???" secondary education 
+                              4 â???" higher education) 
+                              
+
+```{r }
+# Plot high_use of alchol (true or false) based on student being romantic or not and if the results differ if student is boy or girl
+Romplot <- ggplot(alc, aes(x = high_use, y = romantic, col = sex))
+
+# define the plot as a boxplot and draw it
+Romplot + geom_boxplot() + ylab("Romantic student") +ggtitle("Romantic student by alcohol consumption and sex")
+```
+There is no clear explanation based on student being romantic or not.
+
+```{r }
+# Plot high_use of alchol (true or false) based on student being absent for many days in the school and if the results differ if student is boy or girl
+Romplot <- ggplot(alc, aes(x = high_use, y = absences, col = sex))
+
+# define the plot as a boxplot and draw it
+Romplot + geom_boxplot() + ylab("Number of school absences") +ggtitle("Absent student by alcohol consumption and sex")
+```
+
+This shows that student who is absent for many days specially boys and girls are more prone to high alchol consumption.
+
+names(alc)
+
+
+```{r }
+# Plot high_use of alchol (true or false) based on student being absent for many days in the school and if the results differ if student is boy or girl
+Romplot <- ggplot(alc, aes(x = high_use, y = failures, col = sex))
+
+# define the plot as a boxplot and draw it
+Romplot + geom_boxplot() + ylab("Failures") +ggtitle("Failure student by alcohol consumption and sex")
+```
+
+number of past class failures (numeric: n if 1<=n<3, else 4) 
