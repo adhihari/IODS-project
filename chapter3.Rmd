@@ -1,10 +1,4 @@
----
-title: "MOOC_OpenDataScience"
-author: "Hari Adhikari"
-date: "11 November 2018"
-output:
-  html_document: default
----
+
 # Exercise 3
 ## Data Wrangling
 See https://github.com/adhihari/IODS-project/blob/master/data/create_alc.R
