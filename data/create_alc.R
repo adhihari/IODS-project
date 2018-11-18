@@ -50,4 +50,4 @@ alc <- mutate(alc, alc_use = (Dalc + Walc) / 2)
 alc <- mutate(alc, high_use = alc_use > 2)
 glimpse(alc)
 
-write.table(alc, file = "alc_sorted.txt")
+write.table(alc, file = "alc.txt")
