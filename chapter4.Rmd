@@ -1,5 +1,10 @@
 #### Access the MASS package
+
+```{r results='hide', message=FALSE, warning=FALSE}
 library(MASS)
+#install.packages('corrplot')
+library(corrplot)
+```
 
 #### Then read the Boston data from the Mass Package, its in R studio memory, so i can directly fetch them.
 ```{r}
@@ -8,10 +13,29 @@ data("Boston")
 
 # explore the dataset
 str(Boston)
-
-
-summary(Boston)
-
+dim(Boston)
 ```
 
-We see that we have numerical and interger variables. 
+We see that we have numerical and interger variables. So we have 506 rows and 14 columns.
+
+#### Now we see the summary of the Boston data and also plot correlation between each variables. 
+
+```{r}
+summary(Boston)
+
+# calculate the correlation matrix and round it
+cor_matrix<-cor(Boston) 
+
+# print the correlation matrix
+cor_matrix<- round(cor_matrix, 2)
+
+# visualize the correlation matrix
+corrplot(cor_matrix, method="circle")
+corrplot(cor_matrix, method="circle", type='upper')
+corrplot(cor_matrix, method="circle", cl.pos = "b", tl.pos = "d",tl.cex = 0.6)
+```
+
+
+
+
+ 
