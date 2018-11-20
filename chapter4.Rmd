@@ -1,0 +1,17 @@
+#### Access the MASS package
+library(MASS)
+
+#### Then read the Boston data from the Mass Package, its in R studio memory, so i can directly fetch them.
+```{r}
+# load the data
+data("Boston")
+
+# explore the dataset
+str(Boston)
+
+
+summary(Boston)
+
+```
+
+We see that we have numerical and interger variables. 
